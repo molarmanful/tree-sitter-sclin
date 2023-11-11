@@ -1,0 +1,10 @@
+(str) @string
+(num) @constant
+(dot) @punctuation
+(hash) @label
+(esc) @constant
+(vardef) @property
+(var) @variable
+(brack) @keyword
+(word) @function
+(cmd) @operator

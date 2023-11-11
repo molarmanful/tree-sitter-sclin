@@ -1,0 +1,32 @@
+{
+  "name": "tree-sitter-sclin",
+  "version": "0.0.0",
+  "description": "sclin grammar for tree-sitter.",
+  "main": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse": "tree-sitter parse"
+  },
+  "author": "Benjamin Pang",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.53.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "globals": "^13.23.0",
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.sclin",
+      "file-types": [
+        "sclin"
+      ]
+    }
+  ]
+}

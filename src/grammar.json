@@ -1,0 +1,123 @@
+{
+  "name": "sclin",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_expression"
+      }
+    },
+    "_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "str"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "num"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dot"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_cmd"
+        }
+      ]
+    },
+    "str": {
+      "type": "PATTERN",
+      "value": "\"([^\"\\\\]|\\\\.)*\""
+    },
+    "num": {
+      "type": "PATTERN",
+      "value": "\\d*\\.\\d+|\\d+"
+    },
+    "dot": {
+      "type": "STRING",
+      "value": "."
+    },
+    "_cmd": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "hash"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "esc"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vardef"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "var"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "brack"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "word"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "cmd"
+        }
+      ]
+    },
+    "hash": {
+      "type": "PATTERN",
+      "value": "#[^\\s\\d\".]+"
+    },
+    "esc": {
+      "type": "PATTERN",
+      "value": "\\\\[^\\s\\d\".]+"
+    },
+    "mstr": {
+      "type": "PATTERN",
+      "value": "\"[^\\s\\d\".]+"
+    },
+    "vardef": {
+      "type": "PATTERN",
+      "value": "=\\$[^\\s\\d\".]+"
+    },
+    "var": {
+      "type": "PATTERN",
+      "value": "\\$[^\\s\\d\".]+"
+    },
+    "brack": {
+      "type": "PATTERN",
+      "value": "[^\\s\\d\".]*[(\\[{}\\])][^\\s\\d\".]*"
+    },
+    "cmd": {
+      "type": "PATTERN",
+      "value": "[^\\s\\d\".]+"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "word"
+    }
+  ],
+  "inline": [],
+  "supertypes": []
+}
+
