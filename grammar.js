@@ -1,7 +1,8 @@
-let rsv = `[^\\s\\d".]`
-let rsx = `[^\\s\\d".A-Za-z]`
+let rsv = `[^\\s\\d".]+`
+let rsx = `[^\\s\\d".A-Za-z]+`
 
-let pfx = (x, r = rsv) => new RegExp(`${x + r}+`)
+let prefix = (x, r = rsv) => new RegExp(x + r)
+let seqpfx = ($, x) => seq(x, field('name', $.name))
 
 module.exports = grammar({
   name: 'sclin',
@@ -13,14 +14,32 @@ module.exports = grammar({
     str: () => /"([^"\\]|\\.)*"/,
     num: () => /\d*\.\d+|\d+/,
 
-    _cmd: $ => choice($.dot, $.hash, $.esc, $.mstr, $.brack, $.word, $.cmd),
+    _cmd: $ =>
+      choice(
+        $.dot,
+        $.hash,
+        $.esc,
+        $.def,
+        $.var,
+        $.mstr,
+        $.brack,
+        $.word,
+        $.cmd
+      ),
 
     dot: () => '.',
-    brack: () => /[(\[{}\])]+/,
-    hash: () => pfx('#'),
-    esc: () => pfx('\\\\'),
-    mstr: () => pfx('"'),
+
+    hash: $ => seqpfx($, '#'),
+    esc: $ => seqpfx($, '\\\\'),
+    def: $ => seqpfx($, /=\${1,2}/),
+    var: $ => seqpfx($, /\${1,2}/),
+    mstr: $ => seqpfx($, '`'),
+
+    brack: () => /[()\[\]{})]+/,
+
     word: () => /[A-Za-z]+/,
-    cmd: () => pfx('', rsx),
+    cmd: () => prefix('', rsx),
+
+    name: () => token.immediate(field('name', prefix(''))),
   },
 })
