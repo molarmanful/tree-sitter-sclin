@@ -1,69 +1,5 @@
 [
   {
-    "type": "def",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "esc",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "hash",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "mstr",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -80,15 +16,7 @@
           "named": true
         },
         {
-          "type": "def",
-          "named": true
-        },
-        {
           "type": "dot",
-          "named": true
-        },
-        {
-          "type": "esc",
           "named": true
         },
         {
@@ -96,7 +24,7 @@
           "named": true
         },
         {
-          "type": "mstr",
+          "type": "name",
           "named": true
         },
         {
@@ -104,11 +32,11 @@
           "named": true
         },
         {
-          "type": "str",
+          "type": "prefix",
           "named": true
         },
         {
-          "type": "var",
+          "type": "str",
           "named": true
         },
         {
@@ -117,34 +45,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "var",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "#",
-    "named": false
-  },
-  {
-    "type": "\\\\",
-    "named": false
-  },
-  {
-    "type": "`",
-    "named": false
   },
   {
     "type": "brack",
@@ -159,11 +59,19 @@
     "named": true
   },
   {
+    "type": "hash",
+    "named": true
+  },
+  {
     "type": "name",
     "named": true
   },
   {
     "type": "num",
+    "named": true
+  },
+  {
+    "type": "prefix",
     "named": true
   },
   {

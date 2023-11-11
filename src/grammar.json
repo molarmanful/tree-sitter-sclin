@@ -27,7 +27,7 @@
     },
     "str": {
       "type": "PATTERN",
-      "value": "\"([^\"\\\\]|\\\\.)*\""
+      "value": "\"([^\"\\\\]|\\\\.)*\"?"
     },
     "num": {
       "type": "PATTERN",
@@ -46,19 +46,16 @@
         },
         {
           "type": "SYMBOL",
-          "name": "esc"
+          "name": "_spec"
         },
         {
-          "type": "SYMBOL",
-          "name": "def"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "var"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "mstr"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "prefix"
+          },
+          "named": true,
+          "value": "cmd"
         },
         {
           "type": "SYMBOL",
@@ -75,93 +72,32 @@
       ]
     },
     "dot": {
-      "type": "STRING",
-      "value": "."
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "."
+      }
     },
     "hash": {
+      "type": "PATTERN",
+      "value": "#[^\\s\\d\".]+"
+    },
+    "_spec": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "#"
+          "type": "SYMBOL",
+          "name": "prefix"
         },
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "name"
-          }
+          "type": "SYMBOL",
+          "name": "name"
         }
       ]
     },
-    "esc": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\\\\"
-        },
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "name"
-          }
-        }
-      ]
-    },
-    "def": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "=\\${1,2}"
-        },
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "name"
-          }
-        }
-      ]
-    },
-    "var": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "\\${1,2}"
-        },
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "name"
-          }
-        }
-      ]
-    },
-    "mstr": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "`"
-        },
-        {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "name"
-          }
-        }
-      ]
+    "prefix": {
+      "type": "PATTERN",
+      "value": "\\\\|=\\$|\\$|`"
     },
     "brack": {
       "type": "PATTERN",
@@ -172,18 +108,21 @@
       "value": "[A-Za-z]+"
     },
     "cmd": {
-      "type": "PATTERN",
-      "value": "[^\\s\\d\".A-Za-z]+"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^\\s\\d\".A-Za-z]+"
+        }
+      }
     },
     "name": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
-        "type": "FIELD",
-        "name": "name",
-        "content": {
-          "type": "PATTERN",
-          "value": "[^\\s\\d\".]+"
-        }
+        "type": "PATTERN",
+        "value": "[^\\s\\d\".]+"
       }
     }
   },
