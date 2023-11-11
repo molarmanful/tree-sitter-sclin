@@ -2,9 +2,7 @@
 (num) @constant
 (dot) @punctuation
 (hash) @label
-(esc) @constant
-(vardef) @property
-(var) @variable
+(esc) @variable
 (brack) @keyword
 (word) @function
 (cmd) @operator

@@ -28,19 +28,15 @@
           "named": true
         },
         {
+          "type": "mstr",
+          "named": true
+        },
+        {
           "type": "num",
           "named": true
         },
         {
           "type": "str",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
-        },
-        {
-          "type": "vardef",
           "named": true
         },
         {
@@ -71,19 +67,15 @@
     "named": true
   },
   {
+    "type": "mstr",
+    "named": true
+  },
+  {
     "type": "num",
     "named": true
   },
   {
     "type": "str",
-    "named": true
-  },
-  {
-    "type": "var",
-    "named": true
-  },
-  {
-    "type": "vardef",
     "named": true
   },
   {

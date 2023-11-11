@@ -1,29 +1,26 @@
 let rsv = `[^\\s\\d".]`
+let rsx = `[^\\s\\d".A-Za-z]`
 
-let pfx = x => new RegExp(`${x + rsv}+`)
+let pfx = (x, r = rsv) => new RegExp(`${x + r}+`)
 
 module.exports = grammar({
   name: 'sclin',
 
-  externals: $ => [$.word],
-
   rules: {
     source_file: $ => repeat($._expression),
-    _expression: $ => choice($.str, $.num, $.dot, $._cmd),
+    _expression: $ => choice($.str, $.num, $._cmd),
 
     str: () => /"([^"\\]|\\.)*"/,
     num: () => /\d*\.\d+|\d+/,
+
+    _cmd: $ => choice($.dot, $.hash, $.esc, $.mstr, $.brack, $.word, $.cmd),
+
     dot: () => '.',
-
-    _cmd: $ => choice($.hash, $.esc, $.vardef, $.var, $.brack, $.word, $.cmd),
-
-    // hash: () => /#[^\s\d'.]+/,
+    brack: () => /[(\[{}\])]+/,
     hash: () => pfx('#'),
     esc: () => pfx('\\\\'),
     mstr: () => pfx('"'),
-    vardef: () => pfx('=\\$'),
-    var: () => pfx('\\$'),
-    brack: () => new RegExp(`${rsv}*[(\\[{}\\])]${rsv}*`),
-    cmd: () => pfx(''),
+    word: () => /[A-Za-z]+/,
+    cmd: () => pfx('', rsx),
   },
 })

@@ -21,10 +21,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "dot"
-        },
-        {
-          "type": "SYMBOL",
           "name": "_cmd"
         }
       ]
@@ -37,13 +33,13 @@
       "type": "PATTERN",
       "value": "\\d*\\.\\d+|\\d+"
     },
-    "dot": {
-      "type": "STRING",
-      "value": "."
-    },
     "_cmd": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dot"
+        },
         {
           "type": "SYMBOL",
           "name": "hash"
@@ -54,11 +50,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "vardef"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "var"
+          "name": "mstr"
         },
         {
           "type": "SYMBOL",
@@ -74,6 +66,14 @@
         }
       ]
     },
+    "dot": {
+      "type": "STRING",
+      "value": "."
+    },
+    "brack": {
+      "type": "PATTERN",
+      "value": "[(\\[{}\\])]+"
+    },
     "hash": {
       "type": "PATTERN",
       "value": "#[^\\s\\d\".]+"
@@ -86,21 +86,13 @@
       "type": "PATTERN",
       "value": "\"[^\\s\\d\".]+"
     },
-    "vardef": {
+    "word": {
       "type": "PATTERN",
-      "value": "=\\$[^\\s\\d\".]+"
-    },
-    "var": {
-      "type": "PATTERN",
-      "value": "\\$[^\\s\\d\".]+"
-    },
-    "brack": {
-      "type": "PATTERN",
-      "value": "[^\\s\\d\".]*[(\\[{}\\])][^\\s\\d\".]*"
+      "value": "[A-Za-z]+"
     },
     "cmd": {
       "type": "PATTERN",
-      "value": "[^\\s\\d\".]+"
+      "value": "[^\\s\\d\".A-Za-z]+"
     }
   },
   "extras": [
@@ -111,12 +103,7 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [
-    {
-      "type": "SYMBOL",
-      "name": "word"
-    }
-  ],
+  "externals": [],
   "inline": [],
   "supertypes": []
 }

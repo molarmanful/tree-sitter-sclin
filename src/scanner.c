@@ -34,7 +34,7 @@ bool tree_sitter_sclin_external_scanner_scan(void *pl, TSLexer *lex,
   int lc = 0;
   int tc = 0;
 
-  while (isalpha(lex->lookahead)) {
+  while (lex->lookahead) {
     if (isalpha(lex->lookahead))
       lc++;
     tc++;
