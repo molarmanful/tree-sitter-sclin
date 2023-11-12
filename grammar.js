@@ -35,6 +35,6 @@ module.exports = grammar({
 
     cmd: () => token(prec(-1, RegExp(rsx))),
 
-    name: () => ti(new RegExp(rsv)),
+    name: () => ti(RegExp(rsv)),
   },
 })
